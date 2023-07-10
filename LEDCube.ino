@@ -4,21 +4,23 @@
 #define latchPin 12
 #define dataPin 11
 
+uint64_t milliCounter = 0;
+
 void setup()
 {
-  pinMode(clockPin, OUTPUT);
-  pinMode(latchPin, OUTPUT);
-  pinMode(dataPin, OUTPUT); 
-  digitalWrite(latchPin, LOW);
-  uint8_t display = 0b11111111;
-  for(int i = 0; i < 9; i++)
+  setupShiftReg();
+  while(millis() - milliCounter < 5000)
   {
-    shiftOut(dataPin, clockPin, MSBFIRST, display);
+    programAllOn();
   }
-  digitalWrite(latchPin, HIGH);
 }
 
 void loop ()
 {
-
+  milliCounter = millis();
+  while(programMovingPlaneUpDown(millis() - milliCounter, 2))  {}
+  milliCounter = millis();
+  while(programMovingPlaneLeftRight(millis() - milliCounter, 2))  {}
+  milliCounter = millis();
+  while(programMovingPlaneBackForth(millis() - milliCounter, 2))  {}
 }

@@ -1,5 +1,8 @@
+#ifndef PLANES_H
+#define PLANES_H
+
 #include <stdint.h>
-const int planeSize = 8;
+#define planeSize 8
 
 class plane
 {
@@ -14,6 +17,16 @@ class plane
       matrix[5] = six;
       matrix[6] = seven;
       matrix[7] = eight;
+    }
+
+    plane(uint8_t allTheSame)
+    {
+      matrix[planeSize] = {allTheSame};
+    }
+
+    plane()
+    {
+      matrix[planeSize] = {0};
     }
     
     uint8_t matrix[planeSize];
@@ -30,6 +43,4 @@ class plane
   private:
 
 };
-
-static plane fullOn = plane(0b11111111, 0b11111111, 0b11111111, 0b11111111,
-                            0b11111111, 0b11111111, 0b11111111, 0b11111111);
+#endif
