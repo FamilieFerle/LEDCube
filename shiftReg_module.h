@@ -21,6 +21,14 @@ void displayPlane(plane planeToDisplay, int layerNum)
   digitalWrite(latchPin, HIGH);
 }
 
+void displayCube(cube cubeToDisplay)
+{
+  for(int i = 0; i < planeSize; i++)
+  {
+    displayPlane(cubeToDisplay.matrixPlane[i], i);
+  }
+}
+
 void setupShiftReg()
  {
   pinMode(clockPin, OUTPUT);

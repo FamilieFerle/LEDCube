@@ -8,68 +8,63 @@
 int counter = 0;
 
 
-void resetCounter()
+int getLayer(uint64_t time, int cycleNum, int speed)
 {
-  counter = 0;
+  int layerOn = (time / speed) % cycleNum;
+  return (layerOn >= cycleNum/2) ? cycleNum - 1 - layerOn : layerOn;
 }
 
 void programAllOn()
 {
-  for(int i = 0; i < numOfPlanes; i++)
-  {
-    displayPlane(plane(255, 255, 255, 255, 255, 255, 255, 255), i);
-  }
+  displayCube(cube(plane(255)));
 }
 
 void programAllOff()
 {
-  for(int i = 0; i < numOfPlanes; i++)
-  {
-    displayPlane(plane(0,0,0,0,0,0,0,0), i);
-  }
+  displayCube(cube(plane(0)));
 }
 
 bool programMovingPlaneUpDown(uint64_t msTime, int count)
 {
-  int layerOn = msTime / 300;
-  bool doItAgain = lay
-  layerOn = layerOn / 16;
-  layerOn = layerOn > 7 ? 15 - layerOn : layerOn;
+  const int cycleNmr = 16;
+  const int movingSpeed = 300;
+  int layerOn = getLayer(msTime, cycleNmr, movingSpeed);
 
-  displayPlane(plane(255, 255, 255, 255, 255, 255, 255, 255), layerOn);
-  for(int i = 1; i < numOfPlanes; i++)
-  {
-    if(i != layerOn) 
-      displayPlane(plane(0,0,0,0,0,0,0,0), i);
-  }
-  return msTime
+  cube cubeToDisplay = cube(plane(0));
+  cubeToDisplay.matrixPlane[layerOn] = plane(255);
+  displayCube(cubeToDisplay);
+  return (msTime / movingSpeed) / cycleNmr < count;
 }
 
 bool programMovingPlaneLeftRight(uint64_t msTime, int count)
 {
-  int layerOn = msTime / 300;
-  layerOn = layerOn / 16;
-  layerOn = layerOn > 7 ? 15 - layerOn : layerOn;
-  uint8_t mask = 1 << layerOn;
-
-  displayPlane(plane(255, 255, 255, 255, 255, 255, 255, 255), layerOn);
-  for(int i = 1; i < numOfPlanes; i++)
-  {
-    if(i != layerOn) 
-      displayPlane(plane(0,0,0,0,0,0,0,0), i);
-  }
+  const int cycleNmr = 16;
+  const int movingSpeed = 300;
+  int layerOn = getLayer(msTime, cycleNmr, movingSpeed);
+  
+  int mask = 1 << layerOn;
+  displayCube(cube(plane(mask)));
+  return (msTime / movingSpeed) / cycleNmr < count;
 }
 
 bool programMovingPlaneBackForth(uint64_t msTime, int count)
 {
-  int layerOn = msTime / 300;
-  layerOn = layerOn / 16;
-  layerOn = layerOn > 7 ? 15 - layerOn : layerOn;
+  const int cycleNmr = 16;
+  const int movingSpeed = 300;
+  int layerOn = getLayer(msTime, cycleNmr, movingSpeed);
 
-  displayPlane(plane(255, 255, 255, 255, 255, 255, 255, 255), layerOn);
-  for(int i = 1; i < numOfPlanes; i++)
-  {
-    if(i != layerOn) 
-      displayPlane(plane(0,0,0,0,0,0,0,0), i);
-  }
+  plane display = plane(0);
+  display.matrix[layerOn] = 255;
+  displayCube(cube(display));
+  return (msTime / movingSpeed) / cycleNmr < count;
+}
+
+bool programMovingCubeOutIn(uint64_t msTime, int count)
+{
+  const int cycleNmr = 8;
+  const int movingSpeed = 500;
+  int layerOn = getLayer(msTime, cycleNmr, movingSpeed);
+
+  displayCube(cubeInOut[layerOn]);
+  return (msTime / movingSpeed) / cycleNmr < count;
 }
