@@ -26,6 +26,9 @@
 * Drill 2 mm + 3mm
 * Breadboard to test your circuit
 
+## Build LED plane
+<img src="FAB4CB50-77EA-4FE9-982B-B33BB4AF2829.jpeg" width="150" height="150"> <img src="486A9659-D972-416D-9495-4C83E118AD4F.jpeg" width="150" height="150"> <img src="0116BBA6-B367-46AE-A905-A96BC28384EB.jpeg" width="150" height="150"> 
+
 ## 8x8x8 LED Matrix
 <img src="078B3A23-5868-4B6A-BCC2-127739F6FA01.jpeg" width="150" height="150"> <img src="6BA80401-BD12-4FA6-A3BB-8916A02782A0.jpeg" width="150" height="150">
 
