@@ -1,6 +1,6 @@
 # LEDCube
 
-## List of material
+## Bill of material
 * [1 x Arduino Uno or Nano](https://de.aliexpress.com/item/1005001878048890.html?spm=a2g0o.order_detail.order_detail_item.13.6cad6368ZTXRm9&gatewayAdapt=glo2deu)
 * [512 + some x LEDs 3mm](https://de.aliexpress.com/item/1005001473932316.html?spm=a2g0o.order_detail.order_detail_item.15.6cad6368ZTXRm9&gatewayAdapt=glo2deu)
 * [1 x PCB Board 15x9cm](https://de.aliexpress.com/item/1005001436927943.html?spm=a2g0o.order_detail.order_detail_item.5.6cad6368ZTXRm9&gatewayAdapt=glo2deu)
